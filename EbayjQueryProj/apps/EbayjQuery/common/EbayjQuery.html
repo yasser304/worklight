@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EbayjQuery</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<link rel="shortcut icon" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="css/EbayjQuery.css">
+<link rel="stylesheet" href="css/jquery.mobile.theme-1.3.1.css">
+<script>
+	window.$ = window.jQuery = WLJQ;
+</script>
+<script src="js/jquery.mobile-1.3.1.js.js"></script>
+<script src="js/jquery-2.0.2.js.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+</head>
+<body id="content" style="display: none;">
+
+	<div data-role="page" id="homepage">
+		<div data-role="header" id="header" data-position="fixed">
+			<h3>Prolifics Ebay App</h3>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" id="h_login" data-prefetch="true"
+						data-icon="star" class="ui-btn-active ui-state-persist">Login</a></li>
+					<li><a href="html/register.html" id="h_register"
+						data-prefetch="true" data-icon="check">Register</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div data-role="content" style="padding: 30px">
+			<label>Username</label> <input id="username"> <label>Password</label>
+			<input id="password" type="password"><a href="#homescreen"
+				data-role="button" id="button">Login</a>
+
+
+
+		</div>
+		<div data-role="footer" id="footer" data-position="fixed"></div>
+	</div>
+	<!--application UI goes here-->
+
+	<script src="js/initOptions.js"></script>
+	<script src="js/EbayjQuery.js"></script>
+	<script src="js/messages.js"></script>
+
+
+	<div id="homescreen" data-role="page" data-add-back-btn="true"
+		data-back-btn-text="Back">
+		<div data-role="header" data-position="fixed">
+			<h1>Welcome User!</h1>
+			<a href="#homepage" data-role="button" class=ui-btn-right
+				data-icon="minus">Logout</a>
+		</div>
+		<div data-role="content">
+			<div data-role="controlgroup" id="controlgroup" data-type=horizontal>
+				<a href="#myebay" data-role="button" id="button0" data-mini="true">
+					<img src="images/blue/home_32x32.png" class=data-icon width="32"
+					height="32">
+					<p>My Ebay</p>
+				</a> <a href="#" data-role="button" id="button1" data-mini="true"> <img
+					src="images/blue/layers_32x28.png" width="32" height="32">
+					<p>Catagories</p>
+				</a><a data-role="button" id="button2" data-mini="true"> <img
+					src="images/blue/tag_fill_32x32.png" width="32" height="32">
+					<p>Sell Item</p>
+				</a>
+			</div>
+			<ul data-role="listview" id="listview" data-inset="true">
+
+				<li id="listitem"><a href="#"><img
+						src="images/blue/calendar_alt_stroke_32x32.png" class=ui-li-icon />Reminders</a></li>
+				<li id="listitem0"><a href="#"><img
+						src="images/blue/mail_32x24.png" class=ui-li-icon />Messages</a></li>
+				<li id="listitem1"><a href="#"><img
+						src="images/blue/heart_stroke_32x28.png" class=ui-li-icon />Saved
+						Searches</a></li>
+				<li id="btn"><a href="#map"><img
+						src="images/blue/heart_fill_32x28.png" class=ui-li-icon />Saved
+						Sellers</a></li>
+			</ul>
+
+			<ul data-role="listview" id="listview0" data-inset="true">
+				<li id="listitem5"><a href="#"> <img
+						src="images/blue/magnifying_glass_32x32.png" width="50%">
+						<h2>Browse Catagories</h2>
+						<p>Explore the world's largest marketplace</p>
+				</a></li>
+			</ul>
+
+		</div>
+	</div>
+	<div id="myebay" data-role="page" data-add-back-btn="true"
+		data-back-btn-text="Home">
+		<div data-role="header" data-position="fixed">
+			<h1>My Ebay</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" id="listview1" data-inset="true">
+				<li id="listitem3"><a href="#"> <img
+						src="images/blue/eye_32x24.png" class=ui-li-icon /> Watching
+				</a></li>
+				<li id="listitem4"><a href="#">
+				<img src="images/blue/heart_stroke_32x28.png" class=ui-li-icon />
+				Buying</a></li>
+				<li id="listitem6"><a href="#">
+				<img src="images/blue/tag_stroke_32x32.png" class=ui-li-icon />
+				Selling</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="map" data-role="page" data-add-back-btn="true"
+		data-back-btn-text="Back">
+		<div data-role="header" data-position="fixed">
+			<h1>Sellers around you</h1>
+		</div>
+		<div data-role="content">
+  </div>
+		</div>
+</body>
+</html>
