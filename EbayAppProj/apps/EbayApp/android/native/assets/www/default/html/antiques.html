@@ -1,0 +1,23 @@
+<script type="text/javascript" src="dojox/mobile/deviceTheme.js"
+        data-dojo-config="mblThemeFiles: ['base','Carousel','PageIndicator']"></script>
+<div data-dojo-type="dojox.mobile.ScrollableView" id="antiques"	data-dojo-props="selected:true">
+	<div data-dojo-type="dojox.mobile.Heading"
+		data-dojo-props="label:'Buying',back:'Back',moveTo:'cats'"></div>
+<div id="carousel1" data-dojo-type="dojox.mobile.Carousel"
+            data-dojo-props='height:"150px", navButton:true, numVisible:2, title:"Antiques"'>
+    <!-- View #1 -->
+    <div data-dojo-type="dojox.mobile.SwapView">
+        <div data-dojo-type="dojox.mobile.CarouselItem"
+            data-dojo-props='src:"images/box.jpg", value:"Box", headerText:"Box"'></div>
+        <div data-dojo-type="dojox.mobile.CarouselItem"
+            data-dojo-props='src:"images/hmv.jpg", value:"Gramaphone", headerText:"Gramaphone"'></div>
+    </div>
+    <!-- View #2 -->
+    <div data-dojo-type="dojox.mobile.SwapView">
+        <div data-dojo-type="dojox.mobile.CarouselItem"
+            data-dojo-props='src:"images/typewriter.jpg", value:"Type Writer", headerText:"Type Writer"'></div>
+        <div data-dojo-type="dojox.mobile.CarouselItem"
+            data-dojo-props='src:"images/clock.jpg", value:"Clock", headerText:"Clock"'></div>
+    </div>
+</div>
+</div>
