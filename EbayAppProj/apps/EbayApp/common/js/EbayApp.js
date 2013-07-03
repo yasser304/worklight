@@ -34,9 +34,88 @@ function wlCommonInit(){
 }
 
 function dojoInit() {
-	require([ "dojo", "dojo/parser", "dojox/mobile", "dojox/mobile/compat", "dojox/mobile/deviceTheme", "dojox/mobile/ScrollableView", "dojox/mobile/Container", "dojox/mobile/Heading", "dojox/mobile/RoundRect", "dojox/mobile/TextArea", "dojox/mobile/TextBox", "dojox/mobile/TabBar", "dojox/mobile/TabBarButton", "dojox/mobile/View", "dojox/mobile/Button", "dojox/mobile/EdgeToEdgeList", "dojox/mobile/ListItem", "dojox/mobile/IconContainer", "dojox/mobile/Tooltip", "dojox/mobile/IconMenu", "dojox/mobile/IconItem", "dojox/mobile/RoundRectList", "dojox/mobile/EdgeToEdgeCategory" ],
+	require([ "dojo", "dojo/parser", "dojox/mobile", "dojox/mobile/compat",
+			"dojox/mobile/deviceTheme", "dojox/mobile/ScrollableView",
+			"dojox/mobile/Container", "dojox/mobile/Heading",
+			"dojox/mobile/RoundRect", "dojox/mobile/TextArea",
+			"dojox/mobile/TextBox", "dojox/mobile/TabBar",
+			"dojox/mobile/TabBarButton", "dojox/mobile/View",
+			"dojox/mobile/Button", "dojox/mobile/EdgeToEdgeList",
+			"dojox/mobile/ListItem", "dojox/mobile/IconContainer",
+			"dojox/mobile/Tooltip", "dojox/mobile/IconMenu",
+			"dojox/mobile/IconItem", "dojox/mobile/RoundRectList",
+			"dojox/mobile/EdgeToEdgeCategory" ],
 			function(dojo) {
 				dojo.ready(function() {
 				});
 			});
 }
+
+
+onUserRegistration = function(e){
+	WL.Logger.debug("onUserRegisteration");
+	var name = dijit.registry.byId("reg_name").value;
+	var login = dijit.registry.byId("reg_username").value;
+	var password = dijit.registry.byId("reg_password").value;
+	var repassword = dijit.registry.byId("reg_repassword").value;
+	
+	WL.Logger.debug("Name---->"+name);
+	WL.Logger.debug("Login---->"+login);
+	WL.Logger.debug("Password-------->"+password);
+	
+	/*if (name == ""){
+			displayErrorMessage("please enter your name");
+			retrun false;
+	};
+	
+	if (login == ""){
+		displayErrorMessage("please enter your Username");
+		retrun false;
+		
+	};
+	
+	if (password == ""){
+		displayErrorMessage("please enter your password");
+		retrun false;
+		
+	};
+	
+	if (repassword == ""){
+		displayErrorMessage("please confirm your password");
+		retrun false;
+		
+	};
+	
+	if (password != repassword){
+		displayErrorMessage("Passwords do not match");
+	}*/
+	
+	var invocationData = {
+			adapter : 'UserManagementAdapter',
+			procedure: 'addUser',
+			parameters: [name, login, password]
+	};
+	
+	WL.Client.invokeProcedure(invocationData, {
+		onSuccess: getAddUserSuccess,
+		onFailure: getAddUserFailure
+	});
+	
+};
+
+function displayErrorMessage(message){
+	document.getElementById("error").innerHTML = message;
+}
+
+function getAddUserSuccess(response){
+	WL.Logger.debug("getAddUserSuccess");
+	dijit.registry.byId("txturname").value = "";
+	dijit.registry.byId("txturloginid").value = "";
+	dijit.registry.byId("txturpassword").value = "";
+	dijit.registry.byId("register").performTransition(
+			"welcomepage", 1, "slide");
+}
+
+function getAddUserFailure(response) {
+	document.getElementById("error").innerHTML = "Unknown error";
+};

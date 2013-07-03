@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="com.worklight.studio.plugin.classpath.SERVER_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="server/java"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/ymohammed/git/EbayAppDojo/EbayAppProj/server/lib/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

@@ -31,37 +31,38 @@
 
 		<div data-dojo-type="dojox.mobile.ScrollableView" id="register"
 			data-dojo-props="selected:false">
-			<h2 data-dojo-type="dojox.mobile.EdgeToEdgeCategory">Enter a Username</h2>
+			<h2 data-dojo-type="dojox.mobile.EdgeToEdgeCategory">Enter a
+				Username</h2>
 			<input data-dojo-type="dojox.mobile.TextBox" placeholder="Username"
 				size="20" />
-			<h2 data-dojo-type="dojox.mobile.EdgeToEdgeCategory">Enter a Password</h2>
+			<h2 data-dojo-type="dojox.mobile.EdgeToEdgeCategory">Enter a
+				Password</h2>
 			<input data-dojo-type="dojox.mobile.TextBox" placeholder="Password"
 				size="20" />
-			<div class="btn-submit"><ul data-dojo-type="dojox.mobile.IconContainer" iconBase="images/btn-login.gif" class="login-btn">
-        <li data-dojo-type="dojox.mobile.IconItem" iconPos="0,0,80,80" transition="slide" 
-         moveTo="welcomepage"></li>
-      </ul>
-      </div>
+			<div class="btn-submit">
+				<ul data-dojo-type="dojox.mobile.IconContainer"
+					iconBase="images/btn-login.gif" class="login-btn">
+					<li data-dojo-type="dojox.mobile.IconItem" iconPos="0,0,80,80"
+						transition="slide" moveTo="welcomepage"></li>
+				</ul>
+			</div>
 		</div>
 		<div data-dojo-type="dojox.mobile.View" id="login"
 			data-dojo-props="selected:true">
 			<input data-dojo-type="dojox.mobile.TextBox" placeholder="Username"
 				size="20" /> <input data-dojo-type="dojox.mobile.TextBox"
 				placeholder="Password" size="20" />
-			<div class="btn-submit"><ul data-dojo-type="dojox.mobile.IconContainer" iconBase="images/btn-login.gif" class="login-btn">
-        <li data-dojo-type="dojox.mobile.IconItem" iconPos="0,0,80,80" transition="slide" 
-         moveTo="welcomepage"></li>
-      </ul>
-      </div>
+			<div class="btn-submit">
+				<ul data-dojo-type="dojox.mobile.IconContainer"
+					iconBase="images/btn-login.gif" class="login-btn">
+					<li data-dojo-type="dojox.mobile.IconItem" iconPos="0,0,80,80"
+						transition="slide" moveTo="welcomepage"></li>
+				</ul>
+			</div>
 		</div>
 
+
 	</div>
-
-	<!--application UI goes here-->
-	<script src="js/initOptions.js"></script>
-	<script src="js/EbayApp.js"></script>
-	<script src="js/messages.js"></script>
-
 	<div data-dojo-type="dojox.mobile.ScrollableView" id="welcomepage"
 		data-dojo-props="selected:false">
 		<div data-dojo-type="dojox.mobile.Heading"
@@ -73,35 +74,42 @@
 		<ul data-dojo-type="dojox.mobile.IconContainer"
 			data-dojo-props='transition:"slide"'>
 			<li data-dojo-type="dojox.mobile.IconItem"
-				data-dojo-props="label:'My Ebay',icon:'images/white/home_32x32.png'" url="html/userHome.html">
-				
-			</li>
+				data-dojo-props="label:'My Ebay',icon:'images/white/home_32x32.png'"
+				url="html/userHome.html"></li>
 			<li data-dojo-type="dojox.mobile.IconItem"
-				data-dojo-props="label:'Catagories',icon:'images/white/steering_wheel_32x32.png'" url="html/catagories.html" icon="images/white/list_32x28.png">
+				data-dojo-props="label:'Catagories',icon:'images/white/steering_wheel_32x32.png'"
+				url="html/catagories.html" icon="images/white/list_32x28.png">
 			</li>
 
 			<li data-dojo-type="dojox.mobile.IconItem"
-				data-dojo-props="label:'Sell Item',icon:'images/white/tag_fill_32x32.png'" url="html/sell.html">
-			</li>
+				data-dojo-props="label:'Sell Item',icon:'images/white/tag_fill_32x32.png'"
+				url="html/sell.html"></li>
 		</ul>
 
 		<div data-dojo-type="dojox.mobile.RoundRectList">
 			<div data-dojo-type="dojox.mobile.ListItem"
-				data-dojo-props="label:'Reminders'" icon="images/blue/calendar_alt_stroke_32x32.png"></div>
+				data-dojo-props="label:'Reminders'"
+				icon="images/blue/calendar_alt_stroke_32x32.png"></div>
 			<div data-dojo-type="dojox.mobile.ListItem"
 				data-dojo-props="label:'Messages'" icon="images/blue/mail_32x24.png"></div>
 			<div data-dojo-type="dojox.mobile.ListItem"
-				data-dojo-props="label:'Saved searches'" icon="images/blue/magnifying_glass_32x32.png"></div>
+				data-dojo-props="label:'Saved searches'"
+				icon="images/blue/magnifying_glass_32x32.png"></div>
 			<div data-dojo-type="dojox.mobile.ListItem"
-				data-dojo-props="label:'Saved sellers'" icon="images/blue/heart_stroke_32x28.png"></div>
+				data-dojo-props="label:'Saved sellers'"
+				icon="images/blue/heart_stroke_32x28.png"></div>
 		</div>
-		<div data-dojo-type="dojox.mobile.RoundRect" data-dojo-props='shadow:true' >
-  <h5>Browse Categories</h5>
-  Exlopre the world's largest marketplace
-</div>
-		
-	</div>
+		<div data-dojo-type="dojox.mobile.RoundRect"
+			data-dojo-props='shadow:true'>
+			<h5>Browse Categories</h5>
+			Exlopre the world's largest marketplace
+		</div>
 
+	</div>
+<!--application UI goes here-->
+		<script src="js/initOptions.js"></script>
+		<script src="js/EbayApp.js"></script>
+		<script src="js/messages.js"></script>
 
 </body>
 </html>
