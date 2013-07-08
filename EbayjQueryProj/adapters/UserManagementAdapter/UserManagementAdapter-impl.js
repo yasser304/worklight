@@ -42,9 +42,9 @@ function addUser(name,login,password){
 	com.ebayapp.DataRepo.DataRepoUtil.addUser(user);
 }
 
-function getUser(login){
+function getUser(login, password){
 	return{
-		result: com.ebayapp.DataRepo.DataRepoUtil.returnUser(login)
+		result: com.ebayapp.DataRepo.DataRepoUtil.returnUser(login,password)
 	};
 	
 }

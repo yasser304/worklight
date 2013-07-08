@@ -8,7 +8,7 @@ public class DataRepoUtil {
 
 	
 	private static Map<String,User> dataMap= new HashMap<String,User>();
-	private static User def = new User("defaultUser","default","password");
+	private static User def = new User("defaultUser","default","default");
 
 	static{
 		dataMap.put(def.getLogin(),def);
@@ -17,15 +17,15 @@ public class DataRepoUtil {
 		dataMap.put(user.getLogin(), user);
 	}
 	
-	public static String returnUser(String login){
-		User userFound = null;
-		if (dataMap!=null && dataMap.get(login)!=null){
-			userFound= dataMap.get(login);
+	public static String returnUser(String login, String password){
+		User userFound = def;
+		if (dataMap!=null && dataMap.get(login)!=null && dataMap.get(login).getPassword().equals(password)){
+						userFound= dataMap.get(login);
 		}
 		
-		if (dataMap.get(login).getLogin()== "default"){
+		/*if (dataMap.get(login).getLogin()== "default"){
 			userFound=def;
-		}
+		}*/
 		
 		Gson gson = new Gson();
 		String json=gson.toJson(userFound);

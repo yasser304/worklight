@@ -31,47 +31,121 @@ function wlCommonInit(){
 
 }
 
-/*var lat;
-var lng; 
+/*function doLogin(){
+WL.Logger.debug($('input[id=log_username]').val());
+}*/
 
-navigator.geolocation.getCurrentPosition (function (pos)
-		{
-		  lat = pos.coords.latitude;
-		  lng = pos.coords.longitude;
-		});
-
-		$("#btn").bind ("click", function (event)
-		{
-		  //var lat = $("#lat").val ();
-		  //var lng = $("#lng").val ();
-		  var latlng = new google.maps.LatLng (lat, lng);
-		  var options = { 
-		    zoom : 15, 
-		    center : latlng, 
-		    mapTypeId : google.maps.MapTypeId.ROADMAP 
-		  };
-		  var $content = $("#map div:jqmData(role=content)");
-		  $content.height (screen.height - 50);
-		  var map = new google.maps.Map ($content[0], options);
-		  $.mobile.changePage ($("#map"));
-		  
-		  new google.maps.Marker ( 
-		  { 
-		    map : map, 
-		    animation : google.maps.Animation.DROP,
-		    position : latlng  
-		  });  
-		});*/
-
-
-var invocationData = {
-		adapter : 'UserManagementAdapter',
-		procedure: 'addUser',
-		parameters: [name, login, password]
+onUserReg = function(e){
+	WL.Logger.debug("onUserRegisteration");
+	var name = $('input[id=reg_name]').val();
+	var login = $('input[id=reg_username]').val();
+	var password = $('input[id=reg_password]').val();
+	var repassword = $('input[id=reg_repassword]').val();
+	
+	WL.Logger.debug("Name---->"+name);
+	WL.Logger.debug("Login---->"+login);
+	WL.Logger.debug("Password-------->"+password);
+	
+	if (name == ""){
+			displayErrorMessage("please enter your name");
+	};
+	
+	if (login == ""){
+		displayErrorMessage("please enter your Username");
+		
+	};
+	
+	if (password == ""){
+		displayErrorMessage("please enter your password");
+		
+	};
+	
+	if (repassword == ""){
+		displayErrorMessage("please confirm your password");
+		
+		
+	};
+	
+	if (password != repassword){
+		displayErrorMessage("Passwords do not match");
+	}
+	
+	var invocationData = {
+			adapter : 'UserManagementAdapter',
+			procedure: 'addUser',
+			parameters: [name, login, password]
+	};
+	
+	WL.Client.invokeProcedure(invocationData, {
+		onSuccess: getAddUserSuccess,
+		onFailure: getAddUserFailure
+	});
+	
 };
 
+function displayErrorMessage(message){
+	document.getElementById("error").innerHTML = message;
+}
 
-WL.Client.invokeProcedure(invocationData, {
-	onSuccess: getAddUserSuccess,
-	onFailure: getAddUserFailure
-});
+function getAddUserSuccess(response){
+	WL.Logger.debug("getAddUserSuccess");
+	var blank = "";
+	$('input[id=reg_name]').val(blank);
+	$('input[id=reg_username]').val(blank);
+	$('input[id=reg_password]').val(blank);
+	$('input[id=reg_repassword]').val(blank);
+	$.mobile.changePage( $("#homepage"), { transition: "slide"});
+}
+
+function getAddUserFailure(response) {
+	document.getElementById("reg_error").innerHTML = "Unknown error";
+};
+
+function doLogin(){
+	var login = $('input[id=log_username]').val();
+	var password = $('input[id=log_password]').val();
+	WL.Logger.debug("Username------>"+login);
+	WL.Logger.debug("Password------>"+password);
+	
+	var invocationData = {
+			adapter : 'UserManagementAdapter',
+			procedure: 'getUser',
+			parameters: [login, password]
+	};
+	
+	WL.Client.invokeProcedure(invocationData, {
+		onSuccess: getUserLoginSuccess,
+		onFailure: getUserLoginFailure
+		
+	});
+	
+	
+}
+
+function getUserLoginSuccess(result) {
+	WL.Logger.debug("Now in getUserLoginSuccess");
+	
+	var data = result.invocationResult.result;
+	var user = JSON.parse(data);
+	
+	WL.Logger.debug("Found User!");
+	WL.Logger.debug("Name----->"+ user.name);
+	WL.Logger.debug("Username------>"+user.login);
+	WL.Logger.debug("Password------>"+user.password);
+	WL.Logger.debug("Entered Password------>"+$('input[id=log_password]').val());
+	
+	
+	if(user.login != "default"){
+		$.mobile.changePage( $("#homescreen"), { transition: "slide"});
+		WL.Logger.debug("Auth success!");
+	}else{
+		WL.Logger.debug("Auth fail!");
+		getUserLoginFailure();
+	}
+	
+	
+}
+
+function getUserLoginFailure(response) {
+	document.getElementById("log_error").innerHTML = "Authentication Error";
+};

@@ -11,9 +11,13 @@
 		</div>
 		
 		<div data-role="content" style="padding: 15px">
-			<label>Username</label> <input id="username"> <label>Password</label>
-			<input id="password" type="password"><a href="#homescreen"
-				data-role="button" id="button">Login</a>
+		<div id="reg_error" style="color: red;font: bold;font-size: 12px;"></div>
+		<label>Enter your Name</label><input id="reg_name">
+			<label>Enter your Username</label> <input id="reg_username"> <label>Enter your Password</label>
+			<input id="reg_password" type="password">
+			<label>Confirm Password</label>
+			<input id="reg_repassword" type="password">
+			<a data-role="button" id="reg_button" onclick="onUserReg()">Register</a>
 
 		</div>
 		
