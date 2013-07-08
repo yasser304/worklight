@@ -31,7 +31,7 @@ function wlCommonInit(){
 
 }
 
-var lat;
+/*var lat;
 var lng; 
 
 navigator.geolocation.getCurrentPosition (function (pos)
@@ -61,4 +61,17 @@ navigator.geolocation.getCurrentPosition (function (pos)
 		    animation : google.maps.Animation.DROP,
 		    position : latlng  
 		  });  
-		});
+		});*/
+
+
+var invocationData = {
+		adapter : 'UserManagementAdapter',
+		procedure: 'addUser',
+		parameters: [name, login, password]
+};
+
+
+WL.Client.invokeProcedure(invocationData, {
+	onSuccess: getAddUserSuccess,
+	onFailure: getAddUserFailure
+});
