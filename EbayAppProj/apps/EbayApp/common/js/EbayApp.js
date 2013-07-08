@@ -52,7 +52,7 @@ function dojoInit() {
 }
 
 
-onUserRegistration = function(e){
+onUserReg = function(e){
 	WL.Logger.debug("onUserRegisteration");
 	var name = dijit.registry.byId("reg_name").value;
 	var login = dijit.registry.byId("reg_username").value;
@@ -63,32 +63,29 @@ onUserRegistration = function(e){
 	WL.Logger.debug("Login---->"+login);
 	WL.Logger.debug("Password-------->"+password);
 	
-	/*if (name == ""){
+	if (name == ""){
 			displayErrorMessage("please enter your name");
-			retrun false;
 	};
 	
 	if (login == ""){
 		displayErrorMessage("please enter your Username");
-		retrun false;
 		
 	};
 	
 	if (password == ""){
 		displayErrorMessage("please enter your password");
-		retrun false;
 		
 	};
 	
 	if (repassword == ""){
 		displayErrorMessage("please confirm your password");
-		retrun false;
+		
 		
 	};
 	
 	if (password != repassword){
 		displayErrorMessage("Passwords do not match");
-	}*/
+	}
 	
 	var invocationData = {
 			adapter : 'UserManagementAdapter',
@@ -109,13 +106,62 @@ function displayErrorMessage(message){
 
 function getAddUserSuccess(response){
 	WL.Logger.debug("getAddUserSuccess");
-	dijit.registry.byId("txturname").value = "";
-	dijit.registry.byId("txturloginid").value = "";
-	dijit.registry.byId("txturpassword").value = "";
+	dijit.registry.byId("reg_name").value = "";
+	dijit.registry.byId("reg_username").value = "";
+	dijit.registry.byId("reg_password").value = "";
 	dijit.registry.byId("register").performTransition(
-			"welcomepage", 1, "slide");
+			"login", 1, "slide");
 }
 
 function getAddUserFailure(response) {
 	document.getElementById("error").innerHTML = "Unknown error";
+};
+
+function doLogin(){
+	var login = dijit.registry.byId("log_username").value;
+	var password = dijit.registry.byId("log_password").value;
+	WL.Logger.debug("Username------>"+login);
+	WL.Logger.debug("Password------>"+password);
+	
+	var invocationData = {
+			adapter : 'UserManagementAdapter',
+			procedure: 'getUser',
+			parameters: [login, password]
+	};
+	
+	WL.Client.invokeProcedure(invocationData, {
+		onSuccess: getUserLoginSuccess,
+		onFailure: getUserLoginFailure
+		
+	});
+	
+	
+}
+
+function getUserLoginSuccess(result) {
+	WL.Logger.debug("Now in getUserLoginSuccess");
+	
+	var data = result.invocationResult.result;
+	var user = JSON.parse(data);
+	
+	WL.Logger.debug("Found User!");
+	WL.Logger.debug("Name----->"+ user.name);
+	WL.Logger.debug("Username------>"+user.login);
+	WL.Logger.debug("Password------>"+user.password);
+	WL.Logger.debug("Entered Password------>"+dijit.registry.byId("log_password").value);
+	
+	
+	if(user.login != "default"){
+		dijit.registry.byId("home").performTransition("welcomepage", 1, "slide", null);
+		WL.Logger.debug("Auth success!");
+	}else{
+		WL.Logger.debug("Auth fail!");
+		getUserLoginFailure();
+	}
+	
+	
+}
+
+function getUserLoginFailure(response) {
+	document.getElementById("error").innerHTML = "Authentication Error";
 };
