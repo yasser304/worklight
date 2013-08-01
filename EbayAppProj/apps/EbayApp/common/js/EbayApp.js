@@ -101,7 +101,7 @@ onUserReg = function(e){
 };
 
 function displayErrorMessage(message){
-	document.getElementById("error").innerHTML = message;
+	document.getElementById("error_reg").innerHTML = message;
 }
 
 function getAddUserSuccess(response){
@@ -109,24 +109,27 @@ function getAddUserSuccess(response){
 	dijit.registry.byId("reg_name").value = "";
 	dijit.registry.byId("reg_username").value = "";
 	dijit.registry.byId("reg_password").value = "";
+	dijit.registry.byId("reg_repassword").value = "";
 	dijit.registry.byId("register").performTransition(
 			"login", 1, "slide");
 }
 
 function getAddUserFailure(response) {
-	document.getElementById("error").innerHTML = "Unknown error";
+	document.getElementById("error_reg").innerHTML = "Unknown error";
 };
 
 function doLogin(){
 	var login = dijit.registry.byId("log_username").value;
-	var password = dijit.registry.byId("log_password").value;
+	var password_log = dijit.registry.byId("log_password").value;
 	WL.Logger.debug("Username------>"+login);
-	WL.Logger.debug("Password------>"+password);
+	WL.Logger.debug("Password------>"+password_log);
+	
+	console.log("THis is the password that was entered by user "+ password_log);
 	
 	var invocationData = {
 			adapter : 'UserManagementAdapter',
 			procedure: 'getUser',
-			parameters: [login, password]
+			parameters: [login, password_log]
 	};
 	
 	WL.Client.invokeProcedure(invocationData, {
@@ -163,5 +166,13 @@ function getUserLoginSuccess(result) {
 }
 
 function getUserLoginFailure(response) {
-	document.getElementById("error").innerHTML = "Authentication Error";
+	document.getElementById("error_log").innerHTML = "Authentication Error";
+};
+
+var doLogout=function(){
+	document.getElementbyId("error_log").innerHTML="";
+	document.getElementbyID("log_username").innerHTML="";
+	document.getElementbyID("log_password").innerHTML="";
+	dijit.registry.byId("welcomepage").performTransition(
+			"login", 1, "slide");
 };

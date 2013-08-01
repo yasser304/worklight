@@ -31,6 +31,7 @@
 
 		<div data-dojo-type="dojox.mobile.ScrollableView" id="register"
 			data-dojo-props="selected:false">
+			<div id="error_reg" style="color: red;font: bold;font-size: 12px;"></div>
 			<h2 data-dojo-type="dojox.mobile.EdgeToEdgeCategory">Enter Your Name</h2>
 			<input data-dojo-type="dojox.mobile.TextBox" placeholder="Name"
 				size="20" id="reg_name"/>
@@ -55,7 +56,7 @@
 		</div>
 		<div data-dojo-type="dojox.mobile.View" id="login"
 			data-dojo-props="selected:true">
-			<div id="error" style="color: red;font: bold;font-size: 12px;"></div>
+			<div id="error_log" style="color: red;font: bold;font-size: 12px;"></div>
 			<input data-dojo-type="dojox.mobile.TextBox" placeholder="Username"
 				size="20" id="log_username" /> 
 			<input data-dojo-type="dojox.mobile.TextBox"
@@ -76,8 +77,8 @@
 		<div data-dojo-type="dojox.mobile.Heading"
 			data-dojo-props="label:'Welcome User!'">
 			<span data-dojo-type="dojox.mobile.ToolBarButton"
-				data-dojo-props='label:"Logout", moveTo:"login"'
-				style="float: right;"></span>
+				data-dojo-props='label:"Logout"'
+				style="float: right;" onClick="doLogout()"></span>
 		</div>
 		<ul data-dojo-type="dojox.mobile.IconContainer"
 			data-dojo-props='transition:"slide"'>
